@@ -1,50 +1,28 @@
 package src
 
 import (
-	"io/ioutil"
-	"net/http"
 	"net/url"
-	"strings"
 )
 
 const (
-	compile_endpoint = "http://go.dev/_/compile?backend="
+	compile_endpoint = "https://go.dev/_/compile?backend="
 	method		   = "POST"
 )
 
 
-func Golang(code string) (string, error) {
-	compilerClient, err := NewCompilerClient()
-	if err != nil {
-		return "", err
-	}
-
+func Golang(code string) (*Response, error) {
 	formBody := url.Values{
-		"body": {code},
 		"version": {"2"},
+		"body": {code},
 		"withVet": {"true"},
 	}
-
-	req, err := http.NewRequest(method, compile_endpoint,strings.NewReader(formBody.Encode()))
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	if err != nil {
-		return "", err
+	headers := map[string]string{
+		"Content-Type": "application/x-www-form-urlencoded",
+		"Accept": "application/json",
+		"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0",
 	}
+	req := NewRequest(code, headers, formBody.Encode(), compile_endpoint)
+	return req.Execute()
 
-
-	res, err := compilerClient.Do(req)
-	if err != nil {
-		return "", err
-	}
-
-
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return "", err
-	}
-
-	return string(body), nil
 }
 
