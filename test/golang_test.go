@@ -20,8 +20,12 @@ func TestGolang(t *testing.T) {
 		t.Error(err)
 	}
 
-	if res == "" {
+	if res == nil {
 		t.Error("Empty response")
+	}
+
+	if res.StatusCode != 200 {
+		t.Error("Invalid status code")
 	}
 
 	t.Log(res)
