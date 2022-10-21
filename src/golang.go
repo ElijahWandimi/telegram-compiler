@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	compile_endpoint = "https://go.dev/_/compile?backend="
+	compile_endpoint = "http://go.dev/_/compile?backend="
 	method		   = "POST"
 )
 
