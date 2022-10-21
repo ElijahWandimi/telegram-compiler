@@ -24,7 +24,7 @@ func NewCompilerClient() (*http.Client, error) {
 	client := &http.Client{
 		//Transport: transport,
 		Timeout: 120 * time.Second,
-	}
+	}	
 
 	return (client), nil
 }
