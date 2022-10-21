@@ -19,8 +19,10 @@ func NewCompilerClient() (*http.Client, error) {
 		Proxy: http.ProxyURL(proxy_url),
 	}
 
+	_ = transport
+
 	client := &http.Client{
-		Transport: transport,
+		//Transport: transport,
 		Timeout: 120 * time.Second,
 	}
 
