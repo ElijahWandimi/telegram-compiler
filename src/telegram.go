@@ -33,6 +33,15 @@ type Engine struct {
 	RedisClient *redis.Client
 }
 
+type CodeOutput struct {
+	Stdout string `json:"stdout"`
+	Output string `json:"output"`
+	ExecTime float32 `json:"executeTime"`
+	Memory string `json:"memory"`
+	StatusCode int `json:"statusCode"`
+	OutputFiles []interface{} `json:"outputFiles"`
+}
+
 func NewEngine() (*Engine, error) {
 	redisClient,err := RedisClient()
 	return &Engine{RedisClient: redisClient},err
@@ -183,7 +192,15 @@ func Compile(e *Engine, u *Update) (string, error) {
 		return "", errors.New("no response from compiler")
 	}
 
-	return response.Body, nil
+	// convert response body to json
+	var codeOutput CodeOutput
+	err = json.Unmarshal([]byte(response.Body), &codeOutput)
+
+	if err != nil {
+		return "Parsing error", err
+	}
+
+	return codeOutput.Output, nil
 
 }	
 
