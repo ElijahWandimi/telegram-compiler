@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"strings"
 
 	"strconv"
 
@@ -198,6 +199,11 @@ func Compile(e *Engine, u *Update) (string, error) {
 
 	if err != nil {
 		return "Parsing error", err
+	}
+
+	// if code output contains Unable execute replace with 'under construction'
+	if strings.Contains(codeOutput.Output, "Unable to execute") {
+		codeOutput.Output = language[1:] + " execution still under construction :(. Try Golang, C++ and Java for now. Select: \n /golang\n /cpp\n /java"
 	}
 
 	return codeOutput.Output, nil
