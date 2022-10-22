@@ -8,15 +8,15 @@ import (
 )
 
 const (
-	java_test_code = `package main
+	js_test_code = `package main
 	import "fmt"
 	func main() {
 		fmt.Println("Hello, 世界")
 	}`
 )
 
-func TestJava(t *testing.T) {
-	res, err := src.Java(java_test_code)
+func TestJavascript(t *testing.T) {
+	res, err := src.Javascript(js_test_code)
 	if err != nil {
 		t.Error(err)
 	}

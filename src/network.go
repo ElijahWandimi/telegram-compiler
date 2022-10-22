@@ -7,7 +7,7 @@ import (
 )
 
 type Request struct {
-	Code     string
+	Method     string
 	Headers  map[string]string
 	FormBody string
 	Url      string
@@ -19,8 +19,8 @@ type Response struct {
 	Body       string
 }
 
-func NewRequest(code string, headers map[string]string, formBody string, url string) *Request {
-	return &Request{code, headers, formBody, url}
+func NewRequest(method string, headers map[string]string, formBody string, url string) *Request {
+	return &Request{method, headers, formBody, url}
 }
 
 func (r *Request) Execute() (*Response, error) {
@@ -30,7 +30,7 @@ func (r *Request) Execute() (*Response, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest(go_c_method, go_c_endpoint, strings.NewReader(r.FormBody))
+	req, err := http.NewRequest(go_c_method, r.Url, strings.NewReader(r.FormBody))
 
 	for key, value := range r.Headers {
 		req.Header.Add(key, value)

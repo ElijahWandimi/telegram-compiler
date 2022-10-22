@@ -1,7 +1,7 @@
-
 package test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/oyamo/telegram-compiler/src"
@@ -21,12 +21,13 @@ func TestKotlin(t *testing.T) {
 	}
 
 	if res == nil {
-		t.Error("Empty response")
-	}
+		t.Log(res.Body)
+	} else {
+		t.Log(res.Body)
 
-	if res.StatusCode != 200 {
-		t.Error("Invalid status code")
+		if res.StatusCode != 200 {
+			t.Error("Invalid status code " +fmt.Sprint(res.StatusCode))
+		}
+	
 	}
-
-	t.Log(res)
 }

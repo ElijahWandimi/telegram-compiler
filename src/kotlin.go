@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	kt_c_endpoint = "https://compile.kotl.in"
+	kt_c_endpoint = "https://api.kotlinlang.org//api/1.7.20/compiler/run"
 	kt_c_method  = "POST"
 )
 
@@ -18,7 +18,7 @@ func Kotlin(code string) (*Response, error) {
 		"files": [
 		  {
 			"name": "File.kt",
-			"text": %s,
+			"text": "%s",
 			"publicId": ""
 		  }
 		],
@@ -32,6 +32,6 @@ func Kotlin(code string) (*Response, error) {
 		"referer":      "https://play.kotlinlang.org/",
 		"origin":       "https://play.kotlinlang.org",
 	}
-	req := NewRequest(code, headers, payload, kt_c_endpoint)
+	req := NewRequest(kt_c_method, headers, payload, kt_c_endpoint)
 	return req.Execute()
 } 
