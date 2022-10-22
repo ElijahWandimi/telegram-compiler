@@ -6,9 +6,10 @@ import (
 	"github.com/oyamo/telegram-compiler/config"
 )
 
-func Kotlin(code string) (*Response, error) {
 
-	payload, err := ConstructPayload(code, "kotlin")
+func CPlus(code string) (*Response, error) {
+
+	payload, err := ConstructPayload(code, "cpp")
 	if err != nil {
 		return nil, err
 	}

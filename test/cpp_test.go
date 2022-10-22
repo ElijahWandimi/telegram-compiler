@@ -8,11 +8,16 @@ import (
 )
 
 const (
-	js_test_code = `console.log("Hello, 世界");`
+	cpp_test_code = `#include <iostream>
+	using namespace std;
+	int main() {
+		cout << "Hello, World!";
+		return 0;
+	}`
 )
 
-func TestJavascript(t *testing.T) {
-	res, err := src.Javascript(js_test_code)
+func TestCplus(t *testing.T) {
+	res, err := src.CPlus(cpp_test_code)
 	if err != nil {
 		t.Error(err)
 	}

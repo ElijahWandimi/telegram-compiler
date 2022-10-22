@@ -8,11 +8,8 @@ import (
 )
 
 const (
-	python_test_code = `package main
-	import "fmt"
-	func main() {
-		fmt.Println("Hello, 世界")
-	}`
+	python_test_code = `
+	print("Hello, 世界")`
 )
 
 func TestPython(t *testing.T) {

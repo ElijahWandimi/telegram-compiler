@@ -8,11 +8,15 @@ import (
 )
 
 const (
-	js_test_code = `console.log("Hello, 世界");`
+	clang_test_code = `#include <stdio.h>
+	int main() {
+		printf("Hello, World!");
+		return 0;
+		}`
 )
 
-func TestJavascript(t *testing.T) {
-	res, err := src.Javascript(js_test_code)
+func TestClang(t *testing.T) {
+	res, err := src.Clang(java_test_code)
 	if err != nil {
 		t.Error(err)
 	}

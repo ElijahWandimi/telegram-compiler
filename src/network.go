@@ -1,9 +1,11 @@
 package src
 
 import (
+	"bytes"
 	"io/ioutil"
 	"net/http"
-	"strings"
+
+	"github.com/oyamo/telegram-compiler/config"
 )
 
 type Request struct {
@@ -30,7 +32,10 @@ func (r *Request) Execute() (*Response, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest(go_c_method, r.Url, strings.NewReader(r.FormBody))
+	req, err := http.NewRequest(config.METHOD, r.Url, bytes.NewBuffer([]byte(r.FormBody)))
+
+
+	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
 
 	for key, value := range r.Headers {
 		req.Header.Add(key, value)

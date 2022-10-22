@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	java_test_code = `package main
-	import "fmt"
-	func main() {
-		fmt.Println("Hello, 世界")
-	}`
+	java_test_code = `public class Main {
+		public static void main(String[] args) {
+			System.out.println("Hello, 世界");
+			}
+		}`
 )
 
 func TestJava(t *testing.T) {
