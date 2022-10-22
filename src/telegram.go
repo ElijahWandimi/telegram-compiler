@@ -9,7 +9,9 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+
 	"github.com/go-redis/redis"
+	"github.com/oyamo/telegram-compiler/config"
 )
 
 type Chat struct {
@@ -48,7 +50,7 @@ func ParseTelegramRequest(r *http.Request) (*Update, error) {
 func sendTextToTelegramChat(chatId int, text string) (string, error) {
 
 	log.Printf("Sending %s to chat_id: %d", text, chatId)
-	var telegramApi string = "https://api.telegram.org/bot" + os.Getenv("TELEGRAM_BOT_TOKEN") + "/sendMessage"
+	var telegramApi string = "https://api.telegram.org/bot" + config.AUTH_TOKEN + "/sendMessage"
 	response, err := http.PostForm(
 		telegramApi,
 		url.Values{
