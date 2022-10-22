@@ -110,11 +110,11 @@ func Compile(e *Engine, u *Update) (string, error) {
 		return "Hi, I'm a Telegram bot that compiles code for you. Send me a code snippet and I'll compile it for you. \n\n" +
 			"To start using me, send me any of these commands;\n" +
 			"/kotlin\n" +
+			"/golang\n" +
 			"/java\n" +
 			"/clang\n" +
 			"/cpp\n" +
 			"/python\n" +
-			"/go\n" +
 			"/javascript", nil
 	}
 			
@@ -126,7 +126,7 @@ func Compile(e *Engine, u *Update) (string, error) {
 		"/clang",
 		"/cpp",
 		"/python",
-		"/go",
+		"/golang",
 		"/javascript",
 
 	}
@@ -167,7 +167,7 @@ func Compile(e *Engine, u *Update) (string, error) {
 		response, err = CPlus(code)
 	case "/python":
 		response, err = Python(code)
-	case "/go":
+	case "/golang":
 		response, err = Golang(code)
 	case "/javascript":
 		response, err = Javascript(code)
