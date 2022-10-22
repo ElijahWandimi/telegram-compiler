@@ -94,7 +94,7 @@ func(e *Engine) HandleTelegramWebHook(w http.ResponseWriter, r *http.Request) {
 	if errTelegram != nil {
 		log.Printf("got error %s from telegram, reponse body is %s", errTelegram.Error(), telegramResponseBody)
 	} else {
-		log.Printf("punchline %s successfuly distributed to chat id %d", codeResponse, update.Message.Chat.Id)
+		log.Printf("Response %d successfuly distributed to chat id %d", len(codeResponse), update.Message.Chat.Id)
 	}
 }
 
