@@ -203,7 +203,7 @@ func Compile(e *Engine, u *Update) (string, error) {
 
 	// if code output contains Unable execute replace with 'under construction'
 	if strings.Contains(codeOutput.Output, "Unable to execute") {
-		codeOutput.Output = language[1:] + " execution still under construction :(. Try Golang, C++ and Java for now. Select: \n /java\n /cpp\n /golang"
+		codeOutput.Output = language[1:] + " execution still under construction :(. Try Golang and Java for now. Select: \n /java\n /golang"
 	}
 
 	return codeOutput.Output, nil
