@@ -8,9 +8,7 @@ import (
 
 )
 
-func  Java(code string) (*Response, error) {
-
-	
+func  Java(code string) (*Response, error) {	
 	payload, err := ConstructPayload(code, "java", 4)
 	if err != nil {
 		return nil, err
