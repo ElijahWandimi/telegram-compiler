@@ -24,7 +24,7 @@ func ConstructPayload(code string, language string) (string, error) {
 		"args":   nil,
 		"stdin":  nil,
 		"language": language,
-		"versionIndex": 4,
+		"versionIndex": 0,
 		"libs": nil,
 		"projectKey": 1001,
 		"hasInputFiles": false,
