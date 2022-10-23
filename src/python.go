@@ -8,7 +8,7 @@ import (
 
 
 func Python(code string) (*Response, error) {
-	payload, err := ConstructPayload(code, "python3")
+	payload, err := ConstructPayload(code, "python3", 3)
 	if err != nil {
 		return nil, err
 	}

@@ -22,12 +22,12 @@ func Escape(s string) string {
 	return stringBuilder
 }
 
-func ConstructPayload(code string, language string) (string, error) {
+func ConstructPayload(code string, language string, versionIndex int) (string, error) {
 	codeMap := map[string]interface{}{
 		"script": code,
 		"stdin":  nil,
 		"language": language,
-		"versionIndex": 0,
+		"versionIndex": versionIndex,
 		"clientId": config.CLIENT_ID,
    		"clientSecret": config.CLIENT_SECRET,
 	}

@@ -11,7 +11,7 @@ import (
 func  Java(code string) (*Response, error) {
 
 	
-	payload, err := ConstructPayload(code, "java")
+	payload, err := ConstructPayload(code, "java", 4)
 	if err != nil {
 		return nil, err
 	}

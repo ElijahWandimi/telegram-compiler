@@ -9,7 +9,7 @@ import (
 
 
 func Clang(code string) (*Response, error) {
-	payload, err := ConstructPayload(code, "c")
+	payload, err := ConstructPayload(code, "c", 5)
 	if err != nil {
 		return nil, err
 	}

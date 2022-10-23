@@ -8,7 +8,7 @@ import (
 
 
 func CPlus(code string) (*Response, error) {
-	payload, err := ConstructPayload(code, "cpp")
+	payload, err := ConstructPayload(code, "cpp", 5)
 	if err != nil {
 		return nil, err
 	}

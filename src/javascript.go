@@ -11,7 +11,7 @@ import (
 func Javascript(code string) (*Response, error) {
 
 	
-	payload, err := ConstructPayload(code, "nodejs")
+	payload, err := ConstructPayload(code, "nodejs", 3)
 	if err != nil {
 		return nil, err
 	}

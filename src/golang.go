@@ -9,7 +9,7 @@ import (
 
 func Golang(code string) (*Response, error) {
 	
-	payload, err := ConstructPayload(code, "go")
+	payload, err := ConstructPayload(code, "go", 4)
 	if err != nil {
 		return nil, err
 	}

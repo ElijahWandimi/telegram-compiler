@@ -8,7 +8,7 @@ import (
 
 func Kotlin(code string) (*Response, error) {
 
-	payload, err := ConstructPayload(code, "kotlin")
+	payload, err := ConstructPayload(code, "kotlin", 3)
 	if err != nil {
 		return nil, err
 	}
