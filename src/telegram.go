@@ -206,6 +206,10 @@ func Compile(e *Engine, u *Update) (string, error) {
 		codeOutput.Output = language[1:] + " execution still under construction :(. Try Golang and Java for now. Select: \n /java\n /golang"
 	}
 
+	// replace jdoodle with kompiler
+	codeOutput.Output = strings.Replace(codeOutput.Output, "jdoodle", "kompiler", -1)
+	
+
 	return codeOutput.Output, nil
 
 }	
