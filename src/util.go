@@ -29,7 +29,7 @@ func ConstructPayload(code string, language string) (string, error) {
 		"language": language,
 		"versionIndex": 0,
 		"clientId": config.CLIENT_ID,
-   		 "clientSecret": config.CLIENT_SECRET,
+   		"clientSecret": config.CLIENT_SECRET,
 	}
 
 	// convert map to json
