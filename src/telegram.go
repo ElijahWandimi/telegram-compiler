@@ -208,7 +208,11 @@ func Compile(e *Engine, u *Update) (string, error) {
 
 	// replace jdoodle with kompiler
 	codeOutput.Output = strings.Replace(codeOutput.Output, "jdoodle", "kompiler", -1)
-	
+
+	// if code output is null, return error
+	if codeOutput.Output == "" {
+		return "Error", errors.New("no output from kompiler. Check your code")
+	}
 
 	return codeOutput.Output, nil
 
