@@ -1,6 +1,10 @@
 package src
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/oyamo/telegram-compiler/config"
+)
 
 // Escape : Escape special characters like <, >, &, ", ' and /.
 func Escape(s string) string {
@@ -21,13 +25,11 @@ func Escape(s string) string {
 func ConstructPayload(code string, language string) (string, error) {
 	codeMap := map[string]interface{}{
 		"script": code,
-		"args":   nil,
 		"stdin":  nil,
 		"language": language,
 		"versionIndex": 0,
-		"libs": nil,
-		"projectKey": 1001,
-		"hasInputFiles": false,
+		"clientId": config.CLIENT_ID,
+   		 "clientSecret": config.CLIENT_SECRET,
 	}
 
 	// convert map to json
