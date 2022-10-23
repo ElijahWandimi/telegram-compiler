@@ -94,6 +94,7 @@ func(e *Engine) HandleTelegramWebHook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	
 	var codeResponse, errCompile = Compile(e, update)
 	if errCompile != nil {
 		codeResponse = errCompile.Error()
@@ -160,6 +161,10 @@ func Compile(e *Engine, u *Update) (string, error) {
 	if err != nil {
 		return "", errors.New("no language set. Please use one of the following commands: \n/kotlin, \n/java, \n/clang, \n/cpp, \n/python, \n/go, \n/javascript")
 	}
+    
+	// tell user that code is compiling
+	sendTextToTelegramChat(u.Message.Chat.Id, "Compiling code...")
+	
 
 	// compile code
 	code := u.Message.Text
