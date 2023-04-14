@@ -8,15 +8,16 @@ import (
 )
 
 const (
-	java_test_code = `public class Main {
-		public static void main(String[] args) {
-			System.out.println("Hello, 世界");
-			}
-		}`
+	cpp_test_code = `#include <iostream>
+	using namespace std;
+	int main() {
+		cout << "Hello, World!";
+		return 0;
+	}`
 )
 
-func TestJava(t *testing.T) {
-	res, err := src.Java(java_test_code)
+func TestCplus(t *testing.T) {
+	res, err := src.CPlus(cpp_test_code)
 	if err != nil {
 		t.Error(err)
 	}

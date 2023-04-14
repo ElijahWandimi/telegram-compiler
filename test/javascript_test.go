@@ -8,15 +8,11 @@ import (
 )
 
 const (
-	java_test_code = `public class Main {
-		public static void main(String[] args) {
-			System.out.println("Hello, 世界");
-			}
-		}`
+	js_test_code = `console.log("Hello, 世界");`
 )
 
-func TestJava(t *testing.T) {
-	res, err := src.Java(java_test_code)
+func TestJavascript(t *testing.T) {
+	res, err := src.Javascript(js_test_code)
 	if err != nil {
 		t.Error(err)
 	}

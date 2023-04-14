@@ -1,40 +1,23 @@
 package src
 
 import (
-	"io/ioutil"
-	"net/url"
-)
-
-const (
-	compile_endpoint = "http://go.dev/_/compile?backend="
-	method		   = "POST"
+	_"fmt"
+	_ "net/url"
+	"github.com/oyamo/telegram-compiler/config"
 )
 
 
-func Golang(code string) (string, error) {
-	compilerClient, err := NewCompilerClient()
+func Golang(code string) (*Response, error) {
+	
+	payload, err := ConstructPayload(code, "go", 4)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	formBody := url.Values{
-		"body": {code},
-		"version": {"2"},
-		"withVet": {"true"},
+	headers := map[string]string{
+		"User-Agent":   "Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0",
 	}
+	req := NewRequest(config.METHOD, headers, payload, config.ENDPOINT)
+	return req.Execute()
 
-	req, err := compilerClient.PostForm(compile_endpoint, formBody)
-	if err != nil {
-		return "", err
-	}
-
-	defer req.Body.Close()
-
-	body, err := ioutil.ReadAll(req.Body)
-	if err != nil {
-		return "", err
-	}
-
-	return string(body), nil
 }
-

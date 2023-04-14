@@ -6,9 +6,12 @@ import (
 	"time"
 )
 
+type HttpClientProvider struct {
+	HttpClient *http.Client
+}
 
 
-func NewCompilerClient() (*http.Client, error) {
+func NewCompilerClient() (*HttpClientProvider, error) {
 	proxy := NextProxy()
 	proxy_url, err := url.Parse(proxy.FullAddress())
 	if err != nil {
@@ -22,9 +25,12 @@ func NewCompilerClient() (*http.Client, error) {
 	_ = transport
 
 	client := &http.Client{
-		//Transport: transport,
+		// Transport: transport,
 		Timeout: 120 * time.Second,
-	}
+	}	
 
-	return (client), nil
+	return &HttpClientProvider{
+		HttpClient: client,
+	}, nil
 }
+

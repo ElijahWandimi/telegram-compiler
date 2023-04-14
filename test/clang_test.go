@@ -8,15 +8,15 @@ import (
 )
 
 const (
-	java_test_code = `public class Main {
-		public static void main(String[] args) {
-			System.out.println("Hello, 世界");
-			}
+	clang_test_code = `#include <stdio.h>
+	int main() {
+		printf("Hello, World!");
+		return 0;
 		}`
 )
 
-func TestJava(t *testing.T) {
-	res, err := src.Java(java_test_code)
+func TestClang(t *testing.T) {
+	res, err := src.Clang(java_test_code)
 	if err != nil {
 		t.Error(err)
 	}

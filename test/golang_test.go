@@ -1,8 +1,8 @@
 package test
 
 import (
+	"fmt"
 	"testing"
-
 	"github.com/oyamo/telegram-compiler/src"
 )
 
@@ -20,9 +20,13 @@ func TestGolang(t *testing.T) {
 		t.Error(err)
 	}
 
-	if res == "" {
+	if res == nil {
 		t.Error("Empty response")
 	}
 
-	t.Log(res)
+	if res.StatusCode != 200 {
+		t.Error("Invalid status code " +fmt.Sprint(res.StatusCode))
+	}
+
+	t.Log(res.Body)
 }
